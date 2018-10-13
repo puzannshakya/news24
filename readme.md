@@ -61,7 +61,10 @@ php artisan make:controller PagesController
 •	To create a controller for CRUD , type and enter
 php artisan make:controller NewsController –resource
 •	To create a model , type and enter
-php artisan make:model News 
+php artisan make:model News -m
+
+•	for database creation and migration , type and enter
+php artisan migrate 
         
 
 
