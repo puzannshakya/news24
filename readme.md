@@ -1,65 +1,130 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+Installation and Configuration steps for   Laravel Framework
+1.	Download and Install Xampp or wamp  ( I prefer Xampp)
+2.	Download and Install Composer
+3.	Download and Intsall Git (Git bash)
+4.	For editor , I would recommend  to download and install “ Visual Studio Code” because  it consist of terminal and editor in same screen
+5.	In Viusal studio Code by default Terminal consist of powershell we need to change it to bash
+•	For that Go to File->Preferences->Settings->More Options -> OpenSettings.json
+•	In the User Settings type and save
+      {
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+      “terminal.integrated.shell.windows”:  “C:\\Program Files\\Git\\bash.exe”
+}  
+•	After this Restart Visaul Studio Code
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+6.	In visual Studio command , go to htdocs of xampp
+     Type and enter =>   cd ../../xampp/htdocs
+       
+    Type and enter => composer create-project laravel/laravel news24
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+7.	Now go to and open  C:/xampp/apache/conf/extra/httpd-vhosts.conf
+         
+Type and save
+                               
+<VirtualHost *:80>
+   
+    DocumentRoot "C:/xampp/htdocs"
+    ServerName localhost
+   
+</VirtualHost>
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+<VirtualHost *:80>
+   
+    DocumentRoot "C:/xampp/htdocs/news24/public"
+    ServerName news24.dev
+   
+</VirtualHost>
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
+8.	Now Open “Notepad” as an administrator ( Remember  you should open it as administrator)
+Go to and open   C:\Windows\System32\drivers\etc\hosts.file
 
-## Contributing
+Note:Change to “View all files “ at bottom-right to show all files and open hosts.file
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Security Vulnerabilities
+Type and save
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+127.0.0.1 localhost
+127.0.0.1 news24.dev
 
-## License
+9.	Restart Apache and go to browser and In url type  news24.dev
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+•	To create a controller ,type and enter
+php artisan make:controller PagesController
+•	To create a controller for CRUD , type and enter
+php artisan make:controller NewsController –resource
+•	To create a model , type and enter
+php artisan make:model News 
+        
+
+
+
+
+
+
+Project Description
+
+Controller Section 
+
+PagesController : For routing of pages
+
+CategoriesController: Controller for CRUD operation of Category Module  ( There is no Update function Though CRD only)
+
+NewsController: Controller for CRUD Operation of News Module 
+
+ 
+ View Section
+categories/create_category.blade.php : Form for registering new category
+
+categories/view_category.blade.php: Show lists of categories with option of delete which can be further accessed to show the news of that particular category
+
+
+news/create_news.blade.php : Form for registering new News
+
+news/edit_news.blade.php : Form for editing existing News
+
+news/view_list_news.blade.php : shows list of news which can further access to show detailed news
+
+news/view_news.blade.php : shows detailed news with options of edit and delete
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
